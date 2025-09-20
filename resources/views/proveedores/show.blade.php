@@ -1,6 +1,5 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
 <h1>Detalle del Proveedor</h1>
 
 <p><strong>Nombre:</strong> {{ $proveedor->nombre }}</p>
@@ -9,4 +8,5 @@
 
 <a href="{{ route('proveedores.edit', $proveedor->id) }}">✏️ Editar</a>
 <a href="{{ route('proveedores.index') }}">⬅️ Volver al listado</a>
-@endsection
+
+</x-app-layout>

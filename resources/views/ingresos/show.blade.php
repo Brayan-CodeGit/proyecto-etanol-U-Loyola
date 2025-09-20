@@ -1,6 +1,6 @@
-@extends('layouts.app')
+<x-app-layout>
+   
 
-@section('content')
 <h1>Detalle del Ingreso</h1>
 
 <p><strong>Materia Prima:</strong> {{ $ingreso->materiaPrima->nombre }}</p>
@@ -11,4 +11,6 @@
 
 <a href="{{ route('ingresos.edit', $ingreso->id) }}">✏️ Editar</a>
 <a href="{{ route('ingresos.index') }}">⬅️ Volver al listado</a>
-@endsection
+
+   
+</x-app-layout>

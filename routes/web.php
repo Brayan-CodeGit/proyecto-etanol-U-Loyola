@@ -8,6 +8,7 @@ use App\Http\Controllers\TraspasoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ProductoFinalController;
 use App\Http\Controllers\ProductoSemielaboradoController;
+use App\Http\Controllers\ReporteController;
 
 
 /*
@@ -52,6 +53,10 @@ Route::middleware(['auth', 'rol:Administrador,Supervisor,Operador'])->group(func
     Route::resource('productos-semielaborados', ProductoSemielaboradoController::class);
     Route::resource('salidas', SalidaController::class);
 });
+
+
+ //Reportes
+Route::get('/reportes', [ReporteController::class, 'index'])->name('reportes.index');
 
 
 require __DIR__.'/auth.php';

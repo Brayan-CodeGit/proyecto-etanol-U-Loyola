@@ -1,6 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
 <h1>Detalle del Usuario</h1>
 
 <p><strong>Nombre:</strong> {{ $usuario->nombre }}</p>
@@ -9,4 +8,5 @@
 
 <a href="{{ route('usuarios.edit', $usuario->id) }}">✏️ Editar</a>
 <a href="{{ route('usuarios.index') }}">⬅️ Volver al listado</a>
-@endsection
+</x-app-layout>
+    

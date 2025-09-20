@@ -1,6 +1,5 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
 <h1>Productos Finales</h1>
 
 <a href="{{ route('productos-finales.create') }}">➕ Nuevo Producto Final</a>
@@ -35,4 +34,6 @@
         @endforeach
     </tbody>
 </table>
-@endsection
+
+   
+</x-app-layout>

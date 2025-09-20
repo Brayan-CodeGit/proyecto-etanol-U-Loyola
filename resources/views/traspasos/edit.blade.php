@@ -1,6 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
+   
 <h1>Editar Traspaso</h1>
 
 <form action="{{ route('traspasos.update', $traspaso->id) }}" method="POST">
@@ -47,4 +46,5 @@
 
     <button type="submit">Actualizar</button>
 </form>
-@endsection
+
+</x-app-layout>

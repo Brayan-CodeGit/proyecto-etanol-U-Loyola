@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
-    public function index()
+    /* public function index()
     {
         return Usuario::all();
-    }
+    } */
+   public function index()
+{
+    $usuarios = Usuario::all();
+    return view('usuarios.index', compact('usuarios'));
+}
 
     public function store(Request $request)
     {
@@ -29,27 +34,48 @@ class UsuarioController extends Controller
         return Usuario::findOrFail($id);
     } */
 
-    public function update(Request $request, $id)
+    /* public function update(Request $request, $id)
     {
         $usuario = Usuario::findOrFail($id);
         $usuario->update($request->all());
         return $usuario;
-    }
+    } */
 
     public function destroy($id)
     {
         Usuario::destroy($id);
         return response()->json(['message' => 'Usuario eliminado']);
     }
-    public function edit($id)
+  /*   public function edit($id)
 {
     $usuario = Usuario::findOrFail($id);
     return view('usuarios.edit', compact('usuario'));
-}
+} */
 
 public function show($id)
 {
     $usuario = Usuario::findOrFail($id);
     return view('usuarios.show', compact('usuario'));
+}
+public function edit(User $usuario)
+{
+    return view('usuarios.edit', compact('usuario'));
+}
+
+public function update(Request $request, User $usuario)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
+        'rol' => 'required|string|in:Administrador,Supervisor,Operador',
+    ]);
+
+    $usuario->update([
+        'name' => $request->name,
+        'email' => $request->email,
+        'rol' => $request->rol,
+    ]);
+
+    return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado correctamente');
 }
 }

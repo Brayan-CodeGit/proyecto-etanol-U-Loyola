@@ -1,38 +1,43 @@
-@extends('layouts.app')
 
-@section('content')
-<h1>Usuarios del Sistema</h1>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            Lista de Usuarios
+        </h2>
+    </x-slot>
 
-<a href="{{ route('usuarios.create') }}">➕ Nuevo Usuario</a>
+    <div class="py-6">
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white p-6 shadow-sm sm:rounded-lg">
+                @if(session('success'))
+                    <div class="mb-4 text-green-600">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Rol</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($usuarios as $usuario)
-        <tr>
-            <td>{{ $usuario->id }}</td>
-            <td>{{ $usuario->nombre }}</td>
-            <td>{{ $usuario->correo }}</td>
-            <td>{{ $usuario->rol }}</td>
-            <td>
-                <a href="{{ route('usuarios.show', $usuario->id) }}">👁️ Ver</a>
-                <a href="{{ route('usuarios.edit', $usuario->id) }}">✏️ Editar</a>
-                <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">🗑️ Eliminar</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-@endsection
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="px-4 py-2">Nombre</th>
+                            <th class="px-4 py-2">Email</th>
+                            <th class="px-4 py-2">Rol</th>
+                            <th class="px-4 py-2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($usuarios as $usuario)
+                            <tr>
+                                <td class="border px-4 py-2">{{ $usuario->name }}</td>
+                                <td class="border px-4 py-2">{{ $usuario->email }}</td>
+                                <td class="border px-4 py-2">{{ $usuario->rol }}</td>
+                                <td class="border px-4 py-2">
+                                    <a href="{{ route('usuarios.edit', $usuario->id) }}" class="text-indigo-600 hover:underline">Editar</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

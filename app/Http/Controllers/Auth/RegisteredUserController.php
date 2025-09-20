@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
      */
    public function store(Request $request): RedirectResponse
 {
-    $request->validate([
+    /* $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|confirmed|min:8',
@@ -48,7 +48,24 @@ class RegisteredUserController extends Controller
 
     Auth::login($user);
 
+    return redirect(RouteServiceProvider::HOME); */
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|confirmed|min:8',
+    ]);
+
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'rol' => 'Operador', // 👈 Aquí se asigna el rol por defecto
+    ]);
+
+    Auth::login($user);
+
     return redirect(RouteServiceProvider::HOME);
+
 }
 
 }

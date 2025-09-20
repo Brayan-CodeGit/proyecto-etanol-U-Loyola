@@ -1,6 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
+   
 <h1>Detalle del Traspaso</h1>
 
 <p><strong>Producto:</strong> {{ $traspaso->productoSemielaborado->nombre }}</p>
@@ -12,4 +11,5 @@
 
 <a href="{{ route('traspasos.edit', $traspaso->id) }}">✏️ Editar</a>
 <a href="{{ route('traspasos.index') }}">⬅️ Volver al listado</a>
-@endsection
+
+</x-app-layout>

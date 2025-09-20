@@ -1,6 +1,6 @@
-@extends('layouts.app')
+<x-app-layout>
+   
 
-@section('content')
 <h1>Traspasos de Producto Semielaborado</h1>
 
 <a href="{{ route('traspasos.create') }}">➕ Nuevo Traspaso</a>
@@ -41,4 +41,5 @@
         @endforeach
     </tbody>
 </table>
-@endsection
+
+</x-app-layout>

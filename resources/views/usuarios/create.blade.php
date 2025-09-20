@@ -1,6 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
 <h1>Nuevo Usuario</h1>
 
 <form action="{{ route('usuarios.store') }}" method="POST">
@@ -24,4 +23,4 @@
 
     <button type="submit">Guardar</button>
 </form>
-@endsection
+</x-app-layout>

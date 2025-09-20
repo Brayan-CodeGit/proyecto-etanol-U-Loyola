@@ -1,6 +1,6 @@
-@extends('layouts.app')
+<x-app-layout>
+   
 
-@section('content')
 <h1>Materias Primas</h1>
 
 <a href="{{ route('materias-primas.create') }}">➕ Nueva Materia Prima</a>
@@ -37,4 +37,6 @@
         @endforeach
     </tbody>
 </table>
-@endsection
+
+   
+</x-app-layout>
